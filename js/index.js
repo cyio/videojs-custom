@@ -34,3 +34,26 @@ const player = videojs('player', options, function onPlayerReady() {
     videojs.log('Awww...over so soon?!')
   })
 })
+
+let duration = null
+
+player.on('loadedmetadata', function() {
+  duration = player.duration()
+  setMarker(10, 'is-done')
+  setMarker(20, null)
+})
+
+function setMarker(time, customClass) {
+  const div = document.createElement('div')
+  div.setAttribute('data-marker-time', time);
+  div.classList.add('vjs-marker', 'point', customClass)
+  div.style.left = `${(time / duration) * 100}%`
+  document.querySelector('.vjs-progress-holder').appendChild(div)
+}
+
+function updateMarker(time) {
+  const div = document.querySelector(`[data-marker-time="${time}"]`)
+  if (div) {
+    div.classList.toggle('is-done')
+  }
+}
