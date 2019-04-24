@@ -13,6 +13,8 @@ const options = {
       type: 'video/mp4'
     }
   ],
+  inactivityTimeout: 800,
+  languages: 'zh-CN',
   playbackRates: [ 0.75, 1.0, 1.2, 1.5 ],
   plugins: {
     videoJsResolutionSwitcher: {
