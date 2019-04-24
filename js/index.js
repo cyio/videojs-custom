@@ -71,6 +71,12 @@ player.updateSrc([
     res: 720,
     label: '高清'
   },
+  {
+    src: '//content.jwplatform.com/manifests/vM7nH0Kl.m3u8',
+    type: 'application/x-mpegURL',
+    res: 1080,
+    label: 'm3u8'
+  },
 ])
 player.on('resolutionchange', function(){
   console.info('Source changed to %s', player.src())
