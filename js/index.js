@@ -49,6 +49,7 @@ player.on('ready', function() {
     enableModifiersForNumbers: false
   })
 
+  rewriteFullscreen()
   // In this context, `this` is the player that was created by Video.js.
   // this.play();
 })
@@ -103,4 +104,16 @@ function updateMarker(time) {
   if (div) {
     div.classList.toggle('is-done')
   }
+}
+
+function rewriteFullscreen() {
+  player.controlBar.fullscreenToggle.off('click')
+  document.querySelector('.vjs-fullscreen-control').addEventListener('click', () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen()
+    } else {
+      document.documentElement.requestFullscreen()
+    }
+    document.querySelector('.video-js').classList.toggle('vjs-fullscreen')
+  })
 }
