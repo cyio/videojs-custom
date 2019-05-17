@@ -13,34 +13,34 @@
   height: 100%;
 }
 
-.vjs-custom-skin > .video-js {
+.vjs-custom-skin.video-js {
   width: 100%;
   font-family: 'PingFang SC', 'Helvetica Neue', 'Hiragino Sans GB', 'Segoe UI',
     'Microsoft YaHei', '微软雅黑', sans-serif;
 }
 
-.vjs-custom-skin > .video-js .vjs-menu-button-inline.vjs-slider-active,
-.vjs-custom-skin > .video-js .vjs-menu-button-inline:focus,
-.vjs-custom-skin > .video-js .vjs-menu-button-inline:hover,
+.vjs-custom-skin .vjs-menu-button-inline.vjs-slider-active,
+.vjs-custom-skin .vjs-menu-button-inline:focus,
+.vjs-custom-skin .vjs-menu-button-inline:hover,
 .video-js.vjs-no-flex .vjs-menu-button-inline {
   width: 10em;
 }
 
-.vjs-custom-skin > .video-js .vjs-controls-disabled .vjs-big-play-button {
+.vjs-custom-skin .vjs-controls-disabled .vjs-big-play-button {
   display: none !important;
 }
 
-.vjs-custom-skin > .video-js .vjs-control {
+.vjs-custom-skin .vjs-control {
   width: 3em;
 }
 
-.vjs-custom-skin > .video-js .vjs-control.vjs-live-control {
+.vjs-custom-skin .vjs-control.vjs-live-control {
   width: auto;
   padding-left: 0.5em;
   letter-spacing: 0.1em;
 }
 
-.vjs-custom-skin > .video-js .vjs-menu-button-inline:before {
+.vjs-custom-skin .vjs-menu-button-inline:before {
   width: 1.5em;
 }
 
@@ -54,14 +54,14 @@
   display: block;
 }
 
-.vjs-custom-skin > .video-js .vjs-load-progress div,
+.vjs-custom-skin .vjs-load-progress div,
 .vjs-seeking .vjs-big-play-button,
 .vjs-waiting .vjs-big-play-button {
   display: none !important;
 }
 
-.vjs-custom-skin > .video-js .vjs-mouse-display:after,
-.vjs-custom-skin > .video-js .vjs-play-progress:after {
+.vjs-custom-skin .vjs-mouse-display:after,
+.vjs-custom-skin .vjs-play-progress:after {
   padding: 0 0.4em 0.3em;
 }
 
@@ -79,14 +79,14 @@
   display: block;
 }
 
-.vjs-custom-skin > .video-js .vjs-big-play-button {
+.vjs-custom-skin .vjs-big-play-button {
   top: 50%;
   left: 50%;
   margin-left: -1.5em;
   margin-top: -1em;
 }
 
-.vjs-custom-skin > .video-js .vjs-big-play-button {
+.vjs-custom-skin .vjs-big-play-button {
   background-color: rgba(0, 0, 0, 0.45);
   font-size: 3.5em;
   /*border-radius: 50%;*/
@@ -96,35 +96,35 @@
 }
 
 .video-js:hover .vjs-big-play-button,
-.vjs-custom-skin > .video-js .vjs-big-play-button:focus,
-.vjs-custom-skin > .video-js .vjs-big-play-button:active {
+.vjs-custom-skin .vjs-big-play-button:focus,
+.vjs-custom-skin .vjs-big-play-button:active {
   background-color: rgba(36, 131, 213, 0.9);
 }
 
-.vjs-custom-skin > .video-js .vjs-loading-spinner {
+.vjs-custom-skin .vjs-loading-spinner {
   border-color: rgba(36, 131, 213, 0.8);
 }
 
-.vjs-custom-skin > .video-js .vjs-control-bar2 {
+.vjs-custom-skin .vjs-control-bar2 {
   background-color: #000000;
 }
 
-.vjs-custom-skin > .video-js .vjs-control-bar {
+.vjs-custom-skin .vjs-control-bar {
   /*background-color: rgba(0,0,0,0.3) !important;*/
   color: #ffffff;
   font-size: 14px;
 }
 
-.vjs-custom-skin > .video-js .vjs-play-progress,
-.vjs-custom-skin > .video-js .vjs-volume-level {
+.vjs-custom-skin .vjs-play-progress,
+.vjs-custom-skin .vjs-volume-level {
   background-color: #2483d5;
 }
 
-.vjs-custom-skin > .video-js .vjs-play-progress:before {
+.vjs-custom-skin .vjs-play-progress:before {
   top: -0.3em;
 }
 
-.vjs-custom-skin > .video-js .vjs-progress-control:hover .vjs-progress-holder {
+.vjs-custom-skin .vjs-progress-control:hover .vjs-progress-holder {
   font-size: 1.3em;
 }
 
@@ -132,7 +132,7 @@
   left: 0em;
 }
 
-.vjs-custom-skin > .video-js .vjs-menu li {
+.vjs-custom-skin .vjs-menu li {
   padding: 0;
   line-height: 2em;
   font-size: 1.1em;
@@ -140,9 +140,9 @@
     'Microsoft YaHei', '微软雅黑', sans-serif;
 }
 
-.vjs-custom-skin > .video-js .vjs-time-tooltip,
-.vjs-custom-skin > .video-js .vjs-mouse-display:after,
-.vjs-custom-skin > .video-js .vjs-play-progress:after {
+.vjs-custom-skin .vjs-time-tooltip,
+.vjs-custom-skin .vjs-mouse-display:after,
+.vjs-custom-skin .vjs-play-progress:after {
   border-radius: 0;
   font-size: 1em;
   padding: 0 0.3em;
@@ -151,28 +151,27 @@
   top: -3em;
 }
 
-.vjs-custom-skin > .video-js .vjs-menu-button-popup .vjs-menu {
+.vjs-custom-skin .vjs-menu-button-popup .vjs-menu {
   width: 5em;
   left: -1em;
 }
 
 .vjs-custom-skin
-  > .video-js
   .vjs-menu-button-popup.vjs-volume-menu-button-vertical
   .vjs-menu {
   left: 0;
 }
 
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-resolution-button .vjs-menu {
+.vjs-custom-skin .vjs-control-bar .vjs-resolution-button .vjs-menu {
   /*order: 4;*/
 }
 
 /*排序顺序*/
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-play-control {
+.vjs-custom-skin .vjs-control-bar .vjs-play-control {
   order: 0;
 }
 
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-time-control {
+.vjs-custom-skin .vjs-control-bar .vjs-time-control {
   min-width: 1em;
   padding: 0;
   margin: 0 0.2em;
@@ -182,7 +181,6 @@
 }
 
 .vjs-custom-skin
-  > .video-js
   .vjs-control-bar
   .vjs-playback-rate
   .vjs-playback-rate-value {
@@ -190,20 +188,19 @@
   line-height: 2.4;
 }
 
-.vjs-custom-skin > .video-js .vjs-progress-control.vjs-control {
+.vjs-custom-skin .vjs-progress-control.vjs-control {
   /* order: 2; */
 }
 
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-volume-menu-button {
+.vjs-custom-skin .vjs-control-bar .vjs-volume-menu-button {
   /* order: 3; */
 }
 
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-resolution-button {
+.vjs-custom-skin .vjs-control-bar .vjs-resolution-button {
   /* order: 4; */
 }
 
 .vjs-custom-skin
-  > .video-js
   .vjs-control-bar
   .vjs-resolution-button
   .vjs-resolution-button-label {
@@ -211,23 +208,23 @@
   line-height: 3em;
 }
 
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-playback-rate {
+.vjs-custom-skin .vjs-control-bar .vjs-playback-rate {
   /* order: 5; */
 }
 
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-fullscreen-control {
+.vjs-custom-skin .vjs-control-bar .vjs-fullscreen-control {
   /* order: 6; */
 }
 
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-remaining-time {
+.vjs-custom-skin .vjs-control-bar .vjs-remaining-time {
   display: none;
 }
 
-.vjs-custom-skin > .video-js .vjs-progress-holder {
+.vjs-custom-skin .vjs-progress-holder {
   height: 0.58em;
 }
 
-.vjs-custom-skin .video-js .vjs-play-progress:before {
+.vjs-custom-skin .vjs-play-progress:before {
   margin-top: 2px;
 }
 
