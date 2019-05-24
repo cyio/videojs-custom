@@ -49,7 +49,7 @@ player.on('ready', function() {
     enableModifiersForNumbers: false
   })
 
-  rewriteFullscreen()
+  rewriteFullscreen(player, '.container')
   // In this context, `this` is the player that was created by Video.js.
   // this.play();
 })
@@ -106,14 +106,45 @@ function updateMarker(time) {
   }
 }
 
-function rewriteFullscreen() {
-  player.controlBar.fullscreenToggle.off('click')
+// el: 播放器和前置元素的公共容器节点
+function customFullscreenToggle(el) {
+  if (document.fullscreenElement) {
+    document.exitFullscreen()
+  } else {
+    // document.documentElement.requestFullscreen()
+    document.querySelector(el).requestFullscreen()
+  }
+  // document.querySelector('.video-js').classList.toggle('vjs-fullscreen')
+}
+
+function rewriteFullscreen(player, commonEl) {
+  player.controlBar.fullscreenToggle.off('click') // 全屏按钮事件卸载
+  player.tech_.off('dblclick') // 播放器界面双击事件卸载
   document.querySelector('.vjs-fullscreen-control').addEventListener('click', () => {
-    if (document.fullscreenElement) {
-      document.exitFullscreen()
-    } else {
-      document.documentElement.requestFullscreen()
-    }
-    document.querySelector('.video-js').classList.toggle('vjs-fullscreen')
+    customFullscreenToggle(commonEl)
+  })
+  document.querySelector('.video-js').addEventListener('dblclick', () => {
+    customFullscreenToggle(commonEl)
   })
 }
+
+let isHidden = false
+let timer
+function onTimeUpdate() {
+  setTimeout(() => {
+    console.log('on time update')
+  }, 1000)
+}
+player.on('timeupdate', onTimeUpdate)
+function handleVisibilityChange() {
+  isHidden = document.hidden
+  console.log({ isHidden })
+  if (isHidden) {
+    player.off('timeupdate', onTimeUpdate)
+    console.log('off event: timeupdate ')
+  } else {
+    player.on('timeupdate', onTimeUpdate)
+    console.log('recover')
+  }
+}
+document.addEventListener('visibilitychange', handleVisibilityChange, false);
