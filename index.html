@@ -4,21 +4,23 @@
     <meta charset="UTF-8" />
     <title>videojs custom demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="//cdn.bootcss.com/video.js/7.4.0/video-js.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/video.js/7.5.2/video-js.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <div id="app">
       <div class="container">
-        <video class="video-js vjs-custom-skin" id="player" controls="controls"></video>
+        <video class="video-js vjs-custom-skin vjs-live" id="player" controls="controls"></video>
       </div>
       <div class="sticky">
         <h1>sticky</h1>
       </div>
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.min.js"></script>
-    <script src="//cdn.bootcss.com/video.js/7.4.0/video.min.js"></script>
-    <script src="https://cdn.bootcss.com/video.js/7.4.0/lang/zh-CN.js"></script>
+    <script src="//cdn.bootcss.com/video.js/7.5.2/video.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flv.js@1.5.0/dist/flv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/videojs-flvjs@0.2.0/dist/videojs-flvjs.min.js"></script>
+    <script src="https://cdn.bootcss.com/video.js/7.5.2/lang/zh-CN.js"></script>
     <script src="//cdn.sc.gl/videojs-hotkeys/0.2/videojs.hotkeys.min.js"></script>
     <script src="plugins/videojs-resolution-switcher.js"></script>
     <script src="js/index.js"></script>

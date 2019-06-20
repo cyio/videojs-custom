@@ -171,6 +171,10 @@
   order: 0;
 }
 
+.video-js.vjs-custom-skin .vjs-control-bar .vjs-time-control {
+  display: none;
+}
+
 .vjs-custom-skin .vjs-control-bar .vjs-time-control {
   min-width: 1em;
   padding: 0;

@@ -9,22 +9,25 @@ new Vue({
 const options = {
   sources: [
     {
-      src: '//vjs.zencdn.net/v/oceans.mp4',
-      type: 'video/mp4'
+      // src: '//vjs.zencdn.net/v/oceans.mp4',
+      // type: 'video/mp4'
+      src: 'https://mister-ben.github.io/videojs-flvjs/bbb.flv',
+      type: 'video/x-flv'
     }
   ],
   inactivityTimeout: 800,
   languages: 'zh-CN',
   playbackRates: [ 0.75, 1.0, 1.2, 1.5 ],
-  plugins: {
-    videoJsResolutionSwitcher: {
-      default: '480',
-      dynamicLabel: true
-    }
-  },
+  // plugins: {
+    // videoJsResolutionSwitcher: {
+      // default: '480',
+      // dynamicLabel: true
+    // }
+  // },
   controlBar: {
     children: [
       'playToggle',
+      'liveDisplay', //直播流时，显示LIVE
       'currentTimeDisplay',
       'timeDivider',
       'durationDisplay',
@@ -35,6 +38,14 @@ const options = {
     ],
     volumePanel: {inline: false}
   },
+  flvjs: {
+    mediaDataSource: {
+      isLive: true,
+      cors: true,
+      withCredentials: false,
+    },
+    // config: {},
+  },
   // autoplay: true,
   // muted: true,
 }
@@ -42,6 +53,9 @@ const videojs = window.videojs
 const player = videojs('player', options)
 player.on('ready', function() {
   videojs.log('Your player is ready!')
+
+  // document.querySelector('.video-js').classList.add('vjs-live', 'vjs-liveui')
+  // document.querySelector('.vjs-live-control').classList.remove('vjs-hidden')
 
   player.hotkeys({
     volumeStep: 0.1,
@@ -59,26 +73,26 @@ player.on('ended', function() {
   videojs.log('Awww...over so soon?!')
 })
 
-player.updateSrc([
-  {
-    src: 'https://vjs.zencdn.net/v/oceans.mp4',
-    type: 'video/mp4',
-    res: 480,
-    label: '标清'
-  },
-  {
-    src: 'https://vjs.zencdn.net/v/oceans.mp4',
-    type: 'video/mp4',
-    res: 720,
-    label: '高清'
-  },
-  {
-    src: '//content.jwplatform.com/manifests/vM7nH0Kl.m3u8',
-    type: 'application/x-mpegURL',
-    res: 1080,
-    label: 'm3u8'
-  },
-])
+// player.updateSrc([
+  // {
+    // src: 'https://vjs.zencdn.net/v/oceans.mp4',
+    // type: 'video/mp4',
+    // res: 480,
+    // label: '标清'
+  // },
+  // {
+    // src: 'https://vjs.zencdn.net/v/oceans.mp4',
+    // type: 'video/mp4',
+    // res: 720,
+    // label: '高清'
+  // },
+  // {
+    // src: '//content.jwplatform.com/manifests/vM7nH0Kl.m3u8',
+    // type: 'application/x-mpegURL',
+    // res: 1080,
+    // label: 'm3u8'
+  // },
+// ])
 player.on('resolutionchange', function(){
   console.info('Source changed to %s', player.src())
 })
@@ -87,8 +101,8 @@ let duration = null
 
 player.on('loadedmetadata', function() {
   duration = player.duration()
-  setMarker(10, 'is-done')
-  setMarker(20, null)
+  // setMarker(10, 'is-done')
+  // setMarker(20, null)
 })
 
 function setMarker(time, customClass) {
@@ -148,3 +162,4 @@ function handleVisibilityChange() {
   }
 }
 document.addEventListener('visibilitychange', handleVisibilityChange, false);
+
