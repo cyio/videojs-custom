@@ -9,10 +9,10 @@ new Vue({
 const options = {
   sources: [
     {
-      // src: '//vjs.zencdn.net/v/oceans.mp4',
-      // type: 'video/mp4'
-      src: 'https://mister-ben.github.io/videojs-flvjs/bbb.flv',
-      type: 'video/x-flv'
+      src: '//vjs.zencdn.net/v/oceans.mp4',
+      type: 'video/mp4'
+      // src: 'https://mister-ben.github.io/videojs-flvjs/bbb.flv',
+      // type: 'video/x-flv'
     }
   ],
   inactivityTimeout: 800,
@@ -150,6 +150,19 @@ function onTimeUpdate() {
   }, 1000)
 }
 player.on('timeupdate', onTimeUpdate)
+player.on('durationchange', () => {
+  const duration = player.duration()
+  console.log({ duration })
+  console.time()
+})
+player.on('loadstart', () => {
+  console.log('loadstart')
+})
+player.on('loadedmetadata', () => {
+  console.timeEnd()
+  console.log('loadedmetadata')
+})
+player.on('canplay', () => console.log('canplay'))
 function handleVisibilityChange() {
   isHidden = document.hidden
   console.log({ isHidden })
@@ -163,3 +176,7 @@ function handleVisibilityChange() {
 }
 document.addEventListener('visibilitychange', handleVisibilityChange, false);
 
+setTimeout(() => {
+  player.src('//vjs.zencdn.net/v/oceans.mp4')
+  player.play()
+}, 5000)
