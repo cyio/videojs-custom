@@ -101,8 +101,8 @@ let duration = null
 
 player.on('loadedmetadata', function() {
   duration = player.duration()
-  // setMarker(10, 'is-done')
-  // setMarker(20, null)
+  setMarker(10, 'is-done')
+  setMarker(20, null)
 })
 
 function setMarker(time, customClass) {
@@ -177,6 +177,6 @@ function handleVisibilityChange() {
 document.addEventListener('visibilitychange', handleVisibilityChange, false);
 
 setTimeout(() => {
-  player.src('//vjs.zencdn.net/v/oceans.mp4')
-  player.play()
+  // player.src('//vjs.zencdn.net/v/oceans.mp4')
+  // player.play()
 }, 5000)

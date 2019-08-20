@@ -83,22 +83,27 @@
   top: 50%;
   left: 50%;
   margin-left: -1.5em;
-  margin-top: -1em;
+  margin-top: -48px;
 }
 
 .vjs-custom-skin .vjs-big-play-button {
-  background-color: rgba(0, 0, 0, 0.45);
-  font-size: 3.5em;
-  /*border-radius: 50%;*/
-  height: 2em !important;
-  line-height: 2em !important;
-  margin-top: -1em !important;
+  border-radius: 50%;
+  width: 96px;
+  height: 96px;
+  background:rgba(0,0,0,0.5);
+  border:2px solid rgba(255,255,255,1);
+}
+.vjs-custom-skin .vjs-big-play-button .vjs-icon-placeholder:before {
+  font-size: 73px;
+  margin-top: 26px;
 }
 
 .video-js:hover .vjs-big-play-button,
 .vjs-custom-skin .vjs-big-play-button:focus,
 .vjs-custom-skin .vjs-big-play-button:active {
-  background-color: rgba(36, 131, 213, 0.9);
+  /* background-color: rgba(36, 131, 213, 0.9); */
+  background-color: #ff323b;
+  border-color: #ff323b;
 }
 
 .vjs-custom-skin .vjs-loading-spinner {
@@ -110,14 +115,18 @@
 }
 
 .vjs-custom-skin .vjs-control-bar {
-  /*background-color: rgba(0,0,0,0.3) !important;*/
   color: #ffffff;
   font-size: 14px;
+  background: #000;
+  border-top: 1px solid #353535;
 }
 
 .vjs-custom-skin .vjs-play-progress,
 .vjs-custom-skin .vjs-volume-level {
-  background-color: #2483d5;
+  background-color: #FF0520;
+}
+.vjs-custom-skin .vjs-slider {
+  background-color: rgba(255,255,255,0.2);
 }
 
 .vjs-custom-skin .vjs-play-progress:before {
@@ -225,11 +234,46 @@
 }
 
 .vjs-custom-skin .vjs-progress-holder {
-  height: 0.58em;
+  height: 0.57em;
 }
 
 .vjs-custom-skin .vjs-play-progress:before {
   margin-top: 2px;
+}
+
+.vjs-custom-skin .vjs-loading-spinner {
+  /* display: block; */
+  /* visibility: visible; */
+  width:96px;
+  height:96px;
+  background:rgba(0,0,0,0.75);
+  border-radius:8px;
+  border: none;
+  margin: -48px 0 0 -48px;
+}
+
+.vjs-custom-skin .vjs-loading-spinner:before {
+	background-image: url('/images/video-loading.png');
+	background-repeat: no-repeat;
+  background-size: 40px;
+  background-position: center;
+  margin: 0;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.vjs-custom-skin .vjs-play-progress:before {
+  color: #FF0520;
+  font-size: 1.2em;
+}
+.vjs-custom-skin .vjs-volume-panel .vjs-volume-control,
+.vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+  background: rgba(0, 0, 0, .75);
 }
 
 .vjs-marker {
@@ -251,7 +295,8 @@
   left: 0%;
 }
 .point.is-done {
-  background-color: green;
+  /* background-color: green; */
+  background:rgba(255,255,255,0.8);
 }
 .video-js .vjs-progress-holder {
 }
