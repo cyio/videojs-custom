@@ -35,9 +35,13 @@
 }
 
 .vjs-custom-skin .vjs-control.vjs-live-control {
+  display: flex!important;
   width: auto;
   padding-left: 0.5em;
   letter-spacing: 0.1em;
+}
+.vjs-is-live .vjs-progress-control {
+  display: none;
 }
 
 .vjs-custom-skin .vjs-menu-button-inline:before {

@@ -1,0 +1,20 @@
+{
+  "name": "videojs-custom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "servor ./ index.html 8092 5001"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyio/videojs-custom.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyio/videojs-custom/issues"
+  },
+  "homepage": "https://github.com/cyio/videojs-custom#readme"
+}

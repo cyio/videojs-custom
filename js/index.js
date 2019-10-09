@@ -6,28 +6,27 @@ new Vue({
   data: {}
 })
 
+const isLive = false
+
 const options = {
   sources: [
     {
-      src: '//vjs.zencdn.net/v/oceans.mp4',
+      src: new URL(location.href).searchParams.get('url') || '//vjs.zencdn.net/v/oceans.mp4',
       type: 'video/mp4'
-      // src: 'https://mister-ben.github.io/videojs-flvjs/bbb.flv',
-      // type: 'video/x-flv'
     }
   ],
   inactivityTimeout: 800,
   languages: 'zh-CN',
   playbackRates: [ 0.75, 1.0, 1.2, 1.5 ],
-  // plugins: {
-    // videoJsResolutionSwitcher: {
-      // default: '480',
-      // dynamicLabel: true
-    // }
-  // },
+  plugins: {
+    videoJsResolutionSwitcher: {
+      default: '480',
+      dynamicLabel: true
+    }
+  },
   controlBar: {
     children: [
       'playToggle',
-      'liveDisplay', //直播流时，显示LIVE
       'currentTimeDisplay',
       'timeDivider',
       'durationDisplay',
@@ -38,23 +37,50 @@ const options = {
     ],
     volumePanel: {inline: false}
   },
-  flvjs: {
-    mediaDataSource: {
-      isLive: true,
-      cors: true,
-      withCredentials: false,
-    },
-    // config: {},
-  },
   // autoplay: true,
   // muted: true,
+}
+
+if (this.isLive) {
+  options = {
+    ...this.defaultOptions,
+    sources: {
+      src: 'https://mister-ben.github.io/videojs-flvjs/bbb.flv',
+      // src: 'http://127.0.0.1:7001/live/test.flv',
+      type: 'video/x-flv'
+    },
+    controlBar: {
+      children: [
+        'playToggle',
+        'liveDisplay', // 直播流时，显示LIVE
+        'volumePanel',
+        'fullscreenToggle',
+      ],
+      volumePanel: { inline: false },
+    },
+    flvjs: {
+      mediaDataSource: {
+        isLive: true,
+        cors: true,
+        withCredentials: false,
+      },
+    },
+    playbackRates: [],
+  }
 }
 const videojs = window.videojs
 const player = videojs('player', options)
 player.on('ready', function() {
   videojs.log('Your player is ready!')
+  // console.log({ player })
+  video = document.getElementById('player_html5_api')
+  myLog(video)
+  eventLog(video)
+  validLog(video)
 
-  // document.querySelector('.video-js').classList.add('vjs-live', 'vjs-liveui')
+  if (isLive) {
+    document.querySelector('.video-js').classList.add('vjs-is-live')
+  }
   // document.querySelector('.vjs-live-control').classList.remove('vjs-hidden')
 
   player.hotkeys({
@@ -149,29 +175,29 @@ function onTimeUpdate() {
     console.log('on time update')
   }, 1000)
 }
-player.on('timeupdate', onTimeUpdate)
-player.on('durationchange', () => {
-  const duration = player.duration()
-  console.log({ duration })
-  console.time()
-})
-player.on('loadstart', () => {
-  console.log('loadstart')
-})
-player.on('loadedmetadata', () => {
-  console.timeEnd()
-  console.log('loadedmetadata')
-})
-player.on('canplay', () => console.log('canplay'))
+// player.on('timeupdate', onTimeUpdate)
+// player.on('durationchange', () => {
+  // const duration = player.duration()
+  // console.log({ duration })
+  // console.time()
+// })
+// player.on('loadstart', () => {
+  // console.log('loadstart')
+// })
+// player.on('loadedmetadata', () => {
+  // console.timeEnd()
+  // console.log('loadedmetadata')
+// })
+// player.on('canplay', () => console.log('canplay'))
 function handleVisibilityChange() {
   isHidden = document.hidden
   console.log({ isHidden })
   if (isHidden) {
-    player.off('timeupdate', onTimeUpdate)
-    console.log('off event: timeupdate ')
+    // player.off('timeupdate', onTimeUpdate)
+    // console.log('off event: timeupdate ')
   } else {
-    player.on('timeupdate', onTimeUpdate)
-    console.log('recover')
+    // player.on('timeupdate', onTimeUpdate)
+    // console.log('recover')
   }
 }
 document.addEventListener('visibilitychange', handleVisibilityChange, false);
