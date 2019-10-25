@@ -206,3 +206,11 @@ setTimeout(() => {
   // player.src('//vjs.zencdn.net/v/oceans.mp4')
   // player.play()
 }, 5000)
+
+document.querySelector('.upload-video-file').addEventListener('change', (e) => {
+  const file = e.target.files[0]
+  const blob = URL.createObjectURL(file)
+  // video.src = blob
+  // player.src(blob) // not work, no error notice
+  player.src({ src: blob, type: file.type })
+})

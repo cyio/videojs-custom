@@ -4,4 +4,4 @@
 2. 开发 `yarn dev`
 
 支持通过 URL 指定播放地址
-`http://localhost:8092/?url=`
+`http://localhost:8092/?url=//vjs.zencdn.net/v/oceans.mp4`

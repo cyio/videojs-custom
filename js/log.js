@@ -2,6 +2,7 @@
 function myLog(video) {
   video._buffer_times = 0;
 
+  // 视频卡顿
   const logBuffer = (video) => {
     video._buffer_times += 1;
 
@@ -34,6 +35,31 @@ function myLog(video) {
       if (eventName === 'ended') {
         video._buffer_times = 0;
       }
+    });
+  });
+
+  // 加载延迟
+  const logLatency = (video) => {
+    if (video._loadstart_time && video._loadedmetadata_time && video._loadeddata_time) {
+      const loadedmetadataCost = video._loadedmetadata_time - video._loadstart_time; // 元信息
+      const loadeddataCost = video._loadeddata_time - video._loadstart_time; // 首真
+
+      console.log('Latency', [loadedmetadataCost, loadeddataCost]);
+    }
+  };
+
+  ['loadstart', 'loadedmetadata', 'loadeddata'].forEach((eventName) => {
+    video.addEventListener(eventName, function callback() {
+      const key = `_${eventName}_time`;
+      video[key] = Date.now();
+
+      // 在 loadeddata 时记录延迟
+      if (eventName === 'loadeddata') {
+        logLatency(video);
+      }
+
+      // 延迟只需记录一次，相关的监听器触发过后则可移除
+      video.removeEventListener(eventName, callback);
     });
   });
 }
