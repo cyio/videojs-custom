@@ -55,7 +55,7 @@
 .vjs-paused.vjs-has-started.vjs-custom-skin > .video-js .vjs-big-play-button,
 .video-js.vjs-ended .vjs-big-play-button,
 .video-js.vjs-paused .vjs-big-play-button {
-  display: block;
+  /* display: block; */
 }
 
 .vjs-custom-skin .vjs-load-progress div,
@@ -74,13 +74,13 @@
 }
 
 .video-js.vjs-ended .vjs-big-play-button {
-  display: block !important;
+  /* display: block !important; */
 }
 
 .video-js.vjs-ended .vjs-big-play-button,
 .video-js.vjs-paused .vjs-big-play-button,
 .vjs-paused.vjs-has-started.vjs-custom-skin > .video-js .vjs-big-play-button {
-  display: block;
+  /* display: block; */
 }
 
 .vjs-custom-skin .vjs-big-play-button {
@@ -94,6 +94,8 @@
   border-radius: 50%;
   width: 96px;
   height: 96px;
+  /* bottom: 60px; */
+  /* top: initial; */
   background:rgba(0,0,0,0.5);
   border:2px solid rgba(255,255,255,1);
 }

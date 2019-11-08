@@ -74,9 +74,11 @@ player.on('ready', function() {
   videojs.log('Your player is ready!')
   // console.log({ player })
   video = document.getElementById('player_html5_api')
-  myLog(video)
+  // myLog(video)
   eventLog(video)
-  validLog(video)
+  // validLog(video)
+  instantSpeed(video)
+  // testLog(video)
 
   if (isLive) {
     document.querySelector('.video-js').classList.add('vjs-is-live')
@@ -191,7 +193,7 @@ function onTimeUpdate() {
 // player.on('canplay', () => console.log('canplay'))
 function handleVisibilityChange() {
   isHidden = document.hidden
-  console.log({ isHidden })
+  // console.log({ isHidden })
   if (isHidden) {
     // player.off('timeupdate', onTimeUpdate)
     // console.log('off event: timeupdate ')
@@ -214,3 +216,4 @@ document.querySelector('.upload-video-file').addEventListener('change', (e) => {
   // player.src(blob) // not work, no error notice
   player.src({ src: blob, type: file.type })
 })
+

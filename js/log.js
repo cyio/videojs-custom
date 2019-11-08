@@ -15,6 +15,13 @@ function myLog(video) {
       const bufferCost = video._playing_time - video._waiting_time;
       if (bufferCost > 4000) {
         console.log('Buffer', [(bufferCost / 1000).toFixed(1) + 's']);
+        console.log({
+          // online: window.navigator.onLine,
+          downlink: window.navigator.connection.downlink
+          // duration: parseInt(video.duration),
+          // currentTime: parseInt(video.currentTime),
+        })
+        console.log('waiting', new Date(video._waiting_time))
       }
     }
   };
@@ -37,6 +44,9 @@ function myLog(video) {
       }
     });
   });
+
+  // 断网不计算 buffer
+  window.addEventListener('offline', () => video._waiting_time = null);
 
   // 加载延迟
   const logLatency = (video) => {
@@ -67,8 +77,8 @@ function myLog(video) {
 function eventLog(video) {
   [
     'loadstart',
-    // 'progress',
-    // 'suspend',
+    'progress',
+    'suspend',
     'abort',
     'error',
     'emptied',
@@ -91,7 +101,9 @@ function eventLog(video) {
     'volumechange',
   ].forEach(eventName => {
     video.addEventListener(eventName, () => {
+      // console.log({ video })
       // console.log({ eventName, }, video.currentTime, Date.now())
+      console.log({ eventName })
     });
   })
 }
