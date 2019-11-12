@@ -1,10 +1,10 @@
-Vue.config.debug = true
-Vue.config.devtools = true
+// Vue.config.debug = true
+// Vue.config.devtools = true
 
-new Vue({
-  el: '#app',
-  data: {}
-})
+// new Vue({
+  // el: '#app',
+  // data: {}
+// })
 
 const isLive = false
 
@@ -12,7 +12,7 @@ const options = {
   sources: [
     {
       src: new URL(location.href).searchParams.get('url') || '//vjs.zencdn.net/v/oceans.mp4',
-      type: 'video/mp4'
+      // type: 'video/mp4' // 不预设类型，播放器会根据 url 后缀判断
     }
   ],
   inactivityTimeout: 800,
@@ -75,7 +75,7 @@ player.on('ready', function() {
   // console.log({ player })
   video = document.getElementById('player_html5_api')
   // myLog(video)
-  eventLog(video)
+  // eventLog(video)
   // validLog(video)
   instantSpeed(video)
   // testLog(video)
