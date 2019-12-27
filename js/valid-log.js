@@ -1,5 +1,5 @@
 // 有效播放时长收集
-function validLog(video) {
+export function validLog(video) {
   const validPlayTimeLog = {
     startTime: null,
     endTime: null,

@@ -1,4 +1,4 @@
-function instantSpeed(video) {
+export function instantSpeed(video) {
   const currentBuffer = {
     start: -1,
     duration: 0,

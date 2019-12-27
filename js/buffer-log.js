@@ -1,5 +1,5 @@
 // 卡顿缓冲时长
-function bufferLog(video) {
+export function bufferLog(video) {
   video._buffer_times = 0;
   let waitingTimeout = null
   let waitingDuration = 0
@@ -108,38 +108,4 @@ function bufferLog(video) {
       video.removeEventListener(eventName, callback);
     });
   });
-}
-
-function eventLog(video) {
-  [
-    'loadstart',
-    // 'progress',
-    // 'suspend',
-    'abort',
-    'error',
-    'emptied', // 已载入时，调用`load()`方法重载时触发
-    'stalled',
-    'loadedmetadata',
-    'loadeddata',
-    'canplay',
-    'canplaythrough',
-    'playing',
-    'waiting',
-    'seeking',
-    'seeked',
-    'ended',
-    'durationchange',
-    // 'timeupdate',
-    'play',
-    'pause',
-    'ratechange', // playbackrate
-    'resize',
-    'volumechange',
-  ].forEach(eventName => {
-    video.addEventListener(eventName, () => {
-      // console.log({ video })
-      // console.log({ eventName, }, video.currentTime, Date.now())
-      console.log({ eventName })
-    });
-  })
 }

@@ -1,20 +1,25 @@
-// Vue.config.debug = true
-// Vue.config.devtools = true
-
-// new Vue({
-  // el: '#app',
-  // data: {}
-// })
+import { bufferLog } from './buffer-log.js'
+// import { eventLog } from './event-log.js'
+// import { instantSpeed } from './speed.js'
+// import { validLog } from './valid-log.js'
 
 const isLive = false
+
+const paramUrl = new URL(location.href).searchParams.get('url')
 
 const options = {
   sources: [
     {
-      src: new URL(location.href).searchParams.get('url') || '//vjs.zencdn.net/v/oceans.mp4',
+      src: paramUrl || '//vjs.zencdn.net/v/oceans.mp4',
+      // type: 'application/x-mpegURL',
       // type: 'video/mp4' // 不预设类型，播放器会根据 url 后缀判断
     }
   ],
+  html5: {
+    hls: {
+      overrideNative: true, // apply for safari
+    },
+  },
   inactivityTimeout: 800,
   languages: 'zh-CN',
   playbackRates: [ 0.75, 1.0, 1.2, 1.5 ],
@@ -41,9 +46,8 @@ const options = {
   // muted: true,
 }
 
-if (this.isLive) {
+if (isLive) {
   options = {
-    ...this.defaultOptions,
     sources: {
       src: 'https://mister-ben.github.io/videojs-flvjs/bbb.flv',
       // src: 'http://127.0.0.1:7001/live/test.flv',
@@ -70,14 +74,15 @@ if (this.isLive) {
 }
 const videojs = window.videojs
 const player = videojs('player', options)
+// console.log({ player })
 player.on('ready', function() {
   videojs.log('Your player is ready!')
   // console.log({ player })
-  video = document.getElementById('player_html5_api')
-  // myLog(video)
+  const video = document.getElementById('player_html5_api')
+  bufferLog(video)
   // eventLog(video)
   // validLog(video)
-  instantSpeed(video)
+  // instantSpeed(video)
   // testLog(video)
 
   if (isLive) {
@@ -95,7 +100,17 @@ player.on('ready', function() {
   // In this context, `this` is the player that was created by Video.js.
   // this.play();
 })
-
+player.on("loadstart", function () {
+  // https://medium.com/@onetdev/custom-key-acquisition-for-encrypted-hls-in-videojs-59e495f78e52
+  const { hls } = player.tech()
+  if (hls) {
+    hls.xhr.beforeRequest = function(options) {
+      const { href, origin } = new URL(options.uri)
+      options.uri = href.replace(origin, '')
+      return options;
+    };
+  }
+});
 // How about an event listener?
 player.on('ended', function() {
   videojs.log('Awww...over so soon?!')
@@ -203,11 +218,6 @@ function handleVisibilityChange() {
   }
 }
 document.addEventListener('visibilitychange', handleVisibilityChange, false);
-
-setTimeout(() => {
-  // player.src('//vjs.zencdn.net/v/oceans.mp4')
-  // player.play()
-}, 5000)
 
 document.querySelector('.upload-video-file').addEventListener('change', (e) => {
   const file = e.target.files[0]
