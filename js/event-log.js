@@ -26,8 +26,9 @@ export function eventLog(video) {
   ].forEach(eventName => {
     video.addEventListener(eventName, () => {
       // console.log({ video })
-      // console.log({ eventName, }, video.currentTime, Date.now())
-      console.log({ eventName })
+      const { currentTime, readyState } = video
+      console.log({ eventName, }, currentTime, Date.now(), readyState)
+      // console.log({ eventName })
     });
   })
 }

@@ -40,7 +40,6 @@ export function bufferLog(video) {
       const key = `_${eventName}_time`;
       video[key] = Date.now();
 
-      // 在 playing 时记录卡顿，此法可记录绝大多数卡顿，但如果 playing 未触发呢？超时就提示重试了
       if (eventName === 'playing') {
         logBuffer(video);
 
@@ -58,6 +57,7 @@ export function bufferLog(video) {
       // 判断持续卡顿
       if (eventName === 'waiting') {
         waitingTimeout = setInterval(() => {
+          console.log('waiting interval', waitingTimeout)
           waitingDuration += 3
           if (waitingDuration > maxWaitingDuration) {
             clearInterval(waitingTimeout)
@@ -78,6 +78,13 @@ export function bufferLog(video) {
   video.addEventListener('pause', () => {
     if (video._waiting_time) {
       video._waiting_time = null;
+    }
+
+    // 在 playing 时记录卡顿，此法可记录绝大多数卡顿，但如果 playing 未触发呢？超时就提示重试了。这个事件不行，如快进应该重置
+    // 重置超时计算
+    if (waitingTimeout) {
+      clearInterval(waitingTimeout)
+      waitingDuration = 0
     }
   });
 

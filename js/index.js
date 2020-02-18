@@ -1,5 +1,5 @@
 import { bufferLog } from './buffer-log.js'
-// import { eventLog } from './event-log.js'
+import { eventLog } from './event-log.js'
 // import { instantSpeed } from './speed.js'
 // import { validLog } from './valid-log.js'
 
@@ -10,7 +10,7 @@ const paramUrl = new URL(location.href).searchParams.get('url')
 const options = {
   sources: [
     {
-      src: paramUrl || '//vjs.zencdn.net/v/oceans.mp4',
+      src: paramUrl || '//player.alicdn.com/video/editor.mp4', // vjs.zencdn.net/v/oceans.mp4
       // type: 'application/x-mpegURL',
       // type: 'video/mp4' // 不预设类型，播放器会根据 url 后缀判断
     }
@@ -73,17 +73,41 @@ if (isLive) {
   }
 }
 const videojs = window.videojs
-const player = videojs('player', options)
+window.player = videojs('player', options)
 // console.log({ player })
 player.on('ready', function() {
   videojs.log('Your player is ready!')
   // console.log({ player })
   const video = document.getElementById('player_html5_api')
   bufferLog(video)
-  // eventLog(video)
+  eventLog(video)
   // validLog(video)
   // instantSpeed(video)
   // testLog(video)
+
+  const promise = video.play();
+
+  if (promise !== undefined) {
+    // 使用 videojs 方法，有一定概率 then 和 catch 分支里的代码不执行
+    // [Player.play() does not return promise · Issue #5362 · videojs/video.js · GitHub](https://github.com/videojs/video.js/issues/5362#issuecomment-411455790)
+    promise.then(function() {
+      // Autoplay started!
+      console.log('autoplay success with audio')
+    })['catch'](function() {
+      // video.muted(true)
+      video.muted = true
+      video.play().then(function() {
+        console.log('autoplay success with audio muted')
+        // confirm not work 需要用户与页面交互
+        // if (confirm('点击音量按钮，取消静音')) {
+          // video.muted = false
+        // }
+      })['catch'](function() {
+        console.log('autoplay fail with audio muted')
+      })
+      // Autoplay was prevented.
+    });
+  }
 
   if (isLive) {
     document.querySelector('.video-js').classList.add('vjs-is-live')
@@ -227,3 +251,4 @@ document.querySelector('.upload-video-file').addEventListener('change', (e) => {
   player.src({ src: blob, type: file.type })
 })
 
+document.cookie = 'hi=w'
