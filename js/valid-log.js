@@ -43,6 +43,8 @@ export function validLog(video) {
     clearTimeout(validLogTimer)
     isIntervalPause = true
     setEnd()
+
+    alert(video.readyState)
   });
 }
 

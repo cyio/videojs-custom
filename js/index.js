@@ -1,7 +1,7 @@
-import { bufferLog } from './buffer-log.js'
-import { eventLog } from './event-log.js'
+// import { bufferLog } from './buffer-log.js'
+// import { eventLog } from './event-log.js'
 // import { instantSpeed } from './speed.js'
-// import { validLog } from './valid-log.js'
+import { validLog } from './valid-log.js'
 
 const isLive = false
 
@@ -18,6 +18,7 @@ const options = {
   html5: {
     hls: {
       overrideNative: true, // apply for safari
+      cacheEncryptionKeys: true
     },
   },
   inactivityTimeout: 800,
@@ -79,9 +80,9 @@ player.on('ready', function() {
   videojs.log('Your player is ready!')
   // console.log({ player })
   const video = document.getElementById('player_html5_api')
-  bufferLog(video)
-  eventLog(video)
-  // validLog(video)
+  // bufferLog(video)
+  // eventLog(video)
+  validLog(video)
   // instantSpeed(video)
   // testLog(video)
 

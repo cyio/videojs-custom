@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "servor ./ index.html 8092 5001"
+    "dev": "es-dev-server --node-resolve -w -o -p 8092"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/cyio/videojs-custom/issues"
   },
-  "homepage": "https://github.com/cyio/videojs-custom#readme"
+  "homepage": "https://github.com/cyio/videojs-custom#readme",
+  "dependencies": {
+    "uglify-js": "^3.9.1"
+  }
 }
