@@ -44,7 +44,7 @@ export function validLog(video) {
     isIntervalPause = true
     setEnd()
 
-    alert(video.readyState)
+    // alert(video.readyState)
   });
 }
 

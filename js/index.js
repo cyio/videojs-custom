@@ -1,6 +1,6 @@
 // import { bufferLog } from './buffer-log.js'
 // import { eventLog } from './event-log.js'
-// import { instantSpeed } from './speed.js'
+import { instantSpeed } from './speed.js'
 import { validLog } from './valid-log.js'
 
 const isLive = false
@@ -83,7 +83,7 @@ player.on('ready', function() {
   // bufferLog(video)
   // eventLog(video)
   validLog(video)
-  // instantSpeed(video)
+  instantSpeed(video)
   // testLog(video)
 
   const promise = video.play();
